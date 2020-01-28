@@ -1,7 +1,7 @@
 import math 
 
-num1 = [6,-4,7,3,4.2,-8.1,0,-3]
-num2 = [16,2.3,0,-7,6,0,0,-4]
+num1 = [1,-3]
+num2 = [2,0]
 
 
 vector1 =[[6, -4], [7, 3], [4.2, -8.1], [0, -3]]
@@ -9,8 +9,8 @@ vector2 =[[16, 2.3], [0, -7], [6, 0], [0, -4]]
 vectorFinal = []
 
 
-matriz1 = [[[1,1],[2,-3]] , [[4,2],[2,4]]]
-matriz2 = [[[0,0],[0,0]] , [[0,0],[0,0]]]
+matriz1 = [[[1,2],[3,4]] , [[5,6],[7,8]]]# , [[9,10],[11,12]]]
+matriz2 = [[[3,-5],[4,0]] , [[0,0],[0,0]]]
 matrizFinal = []
 
 c = [0,0]
@@ -86,14 +86,35 @@ def inversaVectores(vec1):
         vectorFinal.append(inversa(vec1[i]))
     return vectorFinal
 
+##
+##def adicionMat(mat1,mat2):
+##    for i in range(len(mat1)):
+##        aux = []
+##        for j in range(len(mat1[0])):
+##            
 
-def adicionMat(mat1,mat2):
+
+def matrizTranspuesta(mat1):
+    for i in range(len(mat1[0])):
+        temporal = []
+##        print((mat1[0]))
+        for j in range(len(mat1)):
+            temporal.append(mat1[j][i])
+        matrizFinal.append(temporal)
+    return matrizFinal
+    
+def matrizConjugada(mat1):
+    resu = ""
     for i in range(len(mat1)):
-        aux = []
+        temporal = []
+
         for j in range(len(mat1[0])):
-            
-
-
+            temporalNumeros = []
+            resu= (conjugado(mat1[i][j]))
+            temporalNumeros.append(resu[0])
+            temporalNumeros.append(resu[1])
+            temporal.append(temporalNumeros)
+        matrizFinal.append(temporal)
 def prettyPrinting(c):
     if c[1]!="null":
         if c[1]>=0:
@@ -102,6 +123,8 @@ def prettyPrinting(c):
             print (str(c[0])+""+str(c[1])+"i")
     else:
         print(str(c[0]))
+
+        
 
 
 def prettyprintingVectores(vf):
@@ -114,13 +137,19 @@ def prettyprintingVectores(vf):
                 print(str(i[0])+"+"+str(i[1])+"i")
             else:
                 print(str(i[0])+str(i[1])+"i")
+
+                
     
-    
+def prettyprintingMatriz(matrizFinal):
+    for i in matrizFinal:
+        print(*i)
 
 
         
 
 def main():
+##    matrizConjugada(matriz1)
+    matrizTranspuesta(matriz1)
 ##    inversaVectores(vector1)
 ##    sumaVectores(vector1,vector2)
 ##    cartesianasPolares(num1)
@@ -132,4 +161,5 @@ def main():
 ##    conjugado(num1)
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
+    prettyprintingMatriz(matrizFinal)
 main()
