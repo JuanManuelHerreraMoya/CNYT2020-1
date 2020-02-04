@@ -8,6 +8,14 @@ vector1 =[[6, -4], [7, 3], [4.2, -8.1], [0, -3]]
 vector2 =[[16, 2.3], [0, -7], [6, 0], [0, -4]]
 vectorFinal = []
 
+vectorComplejoVector=[[6, -4], [7, 3], [4.2, -8.1], [0, -3]]
+vectorMultiComplejoVector = []
+
+vector1Tensor = [[6, -4], [7, 3]]
+vector2Tensor = [[1, 1], [1, 1]]
+vectorFinalTensor = []
+
+
 
 matriz1 = [[[1,2],[3,4]] , [[5,6],[7,8]]]# , [[9,10],[11,12]]]
 matriz2 = [[[3,-5],[4,0]] , [[0,0],[0,0]]]
@@ -27,15 +35,17 @@ def restar(num1,num2):
     return (resuE,resuI)
 
 def multiplicar(num1,num2):
-    
+    aux = []
     res1 = num1[0]*num2[0] 
     res2 = num1[0]*num2[1]
     res3 = num1[1]*num2[0]
     res4 = (num1[1]*num2[1])*-1
     res1 = res1+res4
     res2 = res2+res3
+    aux.append(res1)
+    aux.append(res2)
     c[0],c[1] = res1,res2
-    return (res1,res2)
+    return (aux)
 
 def divicion(num1,num2):
     aux = num2[:]
@@ -103,18 +113,41 @@ def matrizTranspuesta(mat1):
         matrizFinal.append(temporal)
     return matrizFinal
     
-def matrizConjugada(mat1):
+def matrizConjugada(vec1):
     resu = ""
-    for i in range(len(mat1)):
+    for i in range(len(vec1)):
         temporal = []
 
-        for j in range(len(mat1[0])):
+        for j in range(len(vec1[0])):
             temporalNumeros = []
-            resu= (conjugado(mat1[i][j]))
+            resu= (conjugado(vec1[i][j]))
             temporalNumeros.append(resu[0])
             temporalNumeros.append(resu[1])
             temporal.append(temporalNumeros)
         matrizFinal.append(temporal)
+
+
+def productoTensorVectores(vec1,vec2):
+    vectorAux=[]
+    for i in range(len(vec1)):
+        for j in range(len(vec2)):
+            vectorAux.append(multiplicar(vec1[i],vec2[j]))
+    vectorFinal=vectorAux
+    print(vectorAux)
+    return vectorAux
+
+
+def escalarPorVector(a,mat1):
+    for i in range(len(mat1)):
+        nuevaMatriz = []
+        nuevaMatriz.append(mat1[i][0]*a)
+        nuevaMatriz.append(mat1[i][1]*a)
+        vectorMultiComplejoVector.append(nuevaMatriz)
+    return (vectorMultiComplejoVector)
+
+
+
+
 def prettyPrinting(c):
     if c[1]!="null":
         if c[1]>=0:
@@ -124,7 +157,6 @@ def prettyPrinting(c):
     else:
         print(str(c[0]))
 
-        
 
 
 def prettyprintingVectores(vf):
@@ -148,8 +180,10 @@ def prettyprintingMatriz(matrizFinal):
         
 
 def main():
+    productoTensorVectores(vector1Tensor,vector2Tensor)
+##    escalarPorVector(2,vectorComplejoVector)
 ##    matrizConjugada(matriz1)
-    matrizTranspuesta(matriz1)
+##    matrizTranspuesta(matriz1)
 ##    inversaVectores(vector1)
 ##    sumaVectores(vector1,vector2)
 ##    cartesianasPolares(num1)
@@ -161,5 +195,5 @@ def main():
 ##    conjugado(num1)
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
-    prettyprintingMatriz(matrizFinal)
+    prettyprintingMatriz(vectorFinalTensor)
 main()
