@@ -4,29 +4,28 @@ num1 = [1,-3]
 num2 = [2,0]
 
 
-vector1 =[[6, -4], [7, 3], [4.2, -8.1], [0, -3]]
+vector1 =[[0, 0], [1, 0], [1, 0], [0, 0]]
 vector2 =[[16, 2.3], [0, -7], [6, 0], [0, -4]]
 vectorFinal = []
-
-vectorComplejoVector=[[6, -4], [7, 3], [4.2, -8.1], [0, -3]]
 vectorMultiComplejoVector = []
-
-vector1Tensor = [[6, -4], [7, 3]]
-vector2Tensor = [[1, 1], [1, 1]]
 vectorFinalTensor = []
 
 
-
-matriz1 = [[[1,2],[3,4]] , [[5,6],[7,8]]]# , [[9,10],[11,12]]]
-matriz2 = [[[3,-5],[4,0]] , [[0,0],[0,0]]]
+ident = [[[1, 0],[0,0]] , [[0,0],[0,0]]]
+matriz1 = [[[0, 0],[1,0]] , [[1,0],[0,0]]]
+matriz2 = [[[(1/(2**0.5)),0],[(1/(2**0.5)),0]] , [[(-1/(2**0.5)),0],[(1/(2**0.5)),0]]]
+matrizTensorFinal = []
 matrizFinal = []
 
 c = [0,0]
 def sumar(num1,num2):
+    aux = []
     resuE = (num1[0])+(num2[0])
     resuI = (num1[1])+(num2[1])
     c[0],c[1] = resuE,resuI
-    return (resuE,resuI)
+    aux.append(resuE)
+    aux.append(resuI)
+    return (aux)
 
 def restar(num1,num2):
     resuE = (num1[0])-(num2[0])
@@ -126,17 +125,6 @@ def matrizConjugada(vec1):
             temporal.append(temporalNumeros)
         matrizFinal.append(temporal)
 
-
-def productoTensorVectores(vec1,vec2):
-    vectorAux=[]
-    for i in range(len(vec1)):
-        for j in range(len(vec2)):
-            vectorAux.append(multiplicar(vec1[i],vec2[j]))
-    vectorFinal=vectorAux
-    print(vectorAux)
-    return vectorAux
-
-
 def escalarPorVector(a,mat1):
     for i in range(len(mat1)):
         nuevaMatriz = []
@@ -147,6 +135,41 @@ def escalarPorVector(a,mat1):
 
 
 
+def productoTensorVectores(vec1,vec2):
+    vectorAux=[]
+    for i in range(len(vec1)):
+        for j in range(len(vec2)):
+            vectorAux.append(multiplicar(vec1[i],vec2[j]))
+    vectorFinal=vectorAux
+    return vectorAux
+
+
+
+def productoTensorMatriz(mat1,mat2):
+    aux = []
+    for i in range(len(mat1)):
+        for j in range(len(mat1)):
+            aux.append(productoTensorVectores(mat1[i],mat2[j]))
+    matrizTensorFinal = aux
+    return aux    
+
+
+    
+def multiMatriz(mat1,mat2):
+    finMat = []
+    for i in range(len(mat1)):
+        aux = []
+        for j in range(len(mat2[0])):
+            cont = (0,0)
+            for k in range(len(mat2)):
+                sumas = multiplicar(mat1[i][k],mat2[k][j])
+                cont = sumar(sumas,cont) 
+    
+            aux.append(cont)
+        finMat.append(aux)
+    return (finMat)
+
+    
 
 def prettyPrinting(c):
     if c[1]!="null":
@@ -180,8 +203,16 @@ def prettyprintingMatriz(matrizFinal):
         
 
 def main():
-    productoTensorVectores(vector1Tensor,vector2Tensor)
-##    escalarPorVector(2,vectorComplejoVector)
+    m1 = productoTensorMatriz(matriz1,matriz1)
+    m2 = productoTensorMatriz(matriz1,matriz2)
+    multiplicacionMatriz1 = multiMatriz(m2,m1)
+    multiplicacionMatriz2 = multiMatriz(multiplicacionMatriz1,ident)
+    print(multiplicacionMatriz2)
+##    print(multiplicacionMatriz2)
+##    multiMatriz(matriz1,matriz2)
+##    productoTensorMatriz(matriz1,matriz2)
+##    productoTensorVectores(vector1,vector2)
+##    escalarPorVector(2,vector1)
 ##    matrizConjugada(matriz1)
 ##    matrizTranspuesta(matriz1)
 ##    inversaVectores(vector1)
@@ -195,5 +226,5 @@ def main():
 ##    conjugado(num1)
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
-    prettyprintingMatriz(vectorFinalTensor)
+##    prettyprintingMatriz(matrizFinal)
 main()
