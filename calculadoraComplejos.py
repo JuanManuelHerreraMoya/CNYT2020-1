@@ -1,19 +1,21 @@
 import math 
+##import wolframalpha
 
-num1 = [1,-3]
-num2 = [2,0]
+num1 = [3,2]
+
+num2 = [-1,2]
 
 
-vector1 =[[0, 0], [1, 0], [1, 0], [0, 0]]
-vector2 =[[16, 2.3], [0, -7], [6, 0], [0, -4]]
+vector1 =[[2,1], [1,-3]]
+vector2 =[[5,0],[2,0]]
 vectorFinal = []
 vectorMultiComplejoVector = []
 vectorFinalTensor = []
 
 
 ident = [[[1, 0],[0,0]] , [[0,0],[0,0]]]
-matriz1 = [[[0, 0],[1,0]] , [[1,0],[0,0]]]
-matriz2 = [[[(1/(2**0.5)),0],[(1/(2**0.5)),0]] , [[(-1/(2**0.5)),0],[(1/(2**0.5)),0]]]
+##matriz1 = [[[0, 0],[1,0]] , [[1,0],[0,0]]]
+##matriz2 = [[[(1/(2**0.5)),0],[(1/(2**0.5)),0]] , [[(-1/(2**0.5)),0],[(1/(2**0.5)),0]]]
 matrizTensorFinal = []
 matrizFinal = []
 
@@ -25,13 +27,18 @@ def sumar(num1,num2):
     c[0],c[1] = resuE,resuI
     aux.append(resuE)
     aux.append(resuI)
+    print(aux)
     return (aux)
 
 def restar(num1,num2):
+    aux=[]
     resuE = (num1[0])-(num2[0])
     resuI = (num1[1])-(num2[1])
+    
     c[0],c[1] = resuE,resuI
-    return (resuE,resuI)
+    aux.append(resuE)
+    aux.append(resuI)
+    return (aux)
 
 def multiplicar(num1,num2):
     aux = []
@@ -54,18 +61,21 @@ def divicion(num1,num2):
     res1 = conjugado1[0]/conjugado2[0]
     res2 = conjugado1[1]/conjugado2[0]
     c[0],c[1]=res1,res2
+    print(c)
     return (res1,res2)
 
 
 def modulo(num1):
     resu = ((num1[0]**2)+(num1[1]**2))**0.5
     c[0],c[1]=resu,"null"
+    print(c)
     return resu
 def inversa(num1):
     c[0],c[1]= num1[0]*-1,num1[1]*-1
     return  c[0],c[1]
 def conjugado(num1):
     c[0],c[1]=num1[0],(num1[1]*-1)
+    print(c)
     return (c[0],c[1])
 
 def cartesianasPolares(num1):
@@ -79,13 +89,20 @@ def cartesianasPolares(num1):
     elif 0>num1[0]:
         angulo = 180- angulo
     c[0],c[1]= hipo ,angulo
+    print(c)
     return (hipo,angulo)
 
 
 def sumaVectores(vec1,vec2):
+    resu = []
+    sumar = [0,0]
     if len(vec1)== len(vec2):
         for i in range(len(vec1)):
-            vectorFinal.append(sumar(vec1[i],vec2[i]))
+            print(sumar(vec1[i],vec2[i]))
+            resu.append(sumar(vec1[i],vec2[i]))
+            print(aux)
+        for j in range(len(aux)):
+            suma = sumar(suma,aux[j])
     return vectorFinal
 
 
@@ -93,24 +110,36 @@ def sumaVectores(vec1,vec2):
 def inversaVectores(vec1):
     for i in range(len(vec1)):
         vectorFinal.append(inversa(vec1[i]))
+    print(vectorFinal)
     return vectorFinal
 
-##
-##def adicionMat(mat1,mat2):
-##    for i in range(len(mat1)):
-##        aux = []
-##        for j in range(len(mat1[0])):
-##            
+matriz1 = [[[1,-1],[2,7]] , [[4,0],[5,1]]]
+matriz2 = [[[2, 0],[5,0]] , [[3,0],[7,0]]]
 
+def adicionMat(mat1,mat2):
+    for i in range(len(mat1)):
+        aux = []
+        for j in range(len(mat1[0])):
+            aux.append(sumar(mat1[i][j],mat2[i][j]))
+    print(aux)
+    return(aux)
 
 def matrizTranspuesta(mat1):
     for i in range(len(mat1[0])):
         temporal = []
-##        print((mat1[0]))
         for j in range(len(mat1)):
             temporal.append(mat1[j][i])
         matrizFinal.append(temporal)
     return matrizFinal
+
+def productoInternoVectores(vec1,vec2):
+    aux = []
+    resu = [0,0]
+    if len(vec1)==len(vec2):
+        for i in range(len(vec1)):
+           aux.append(multiplicar(vec1[i],vec2[i]))
+           resu = sumar(resu,aux[i])
+    return(resu)
     
 def matrizConjugada(vec1):
     resu = ""
@@ -124,15 +153,23 @@ def matrizConjugada(vec1):
             temporalNumeros.append(resu[1])
             temporal.append(temporalNumeros)
         matrizFinal.append(temporal)
+    return (matrizFinal)
 
-def escalarPorVector(a,mat1):
-    for i in range(len(mat1)):
+def escalarPorVector(a,vec1):
+    for i in range(len(vec1)):
         nuevaMatriz = []
-        nuevaMatriz.append(mat1[i][0]*a)
-        nuevaMatriz.append(mat1[i][1]*a)
+        nuevaMatriz.append(vec1[i][0]*a)
+        nuevaMatriz.append(vec1[i][1]*a)
         vectorMultiComplejoVector.append(nuevaMatriz)
+
     return (vectorMultiComplejoVector)
 
+
+def escalarPorMatriz(a,mat1):
+    for i in range(len(mat1)):
+        aux = []
+        aux.append(escalarPorVector(a,mat1[i]))
+    return (aux)
 
 
 def productoTensorVectores(vec1,vec2):
@@ -141,6 +178,7 @@ def productoTensorVectores(vec1,vec2):
         for j in range(len(vec2)):
             vectorAux.append(multiplicar(vec1[i],vec2[j]))
     vectorFinal=vectorAux
+
     return vectorAux
 
 
@@ -153,8 +191,37 @@ def productoTensorMatriz(mat1,mat2):
     matrizTensorFinal = aux
     return aux    
 
+def potenciaCuadrada (num):
+    return (multiplicar(num,num))
 
-    
+def productoInternoVectores(vec1,vec2):
+    resu = []
+    if len(vec1)==len(vec2):
+        cont = 0
+        for i in range(len(vec1)):
+            resu = multiplicar(vec1[i],vec2[i])
+    return (resu)
+
+def distanciaVectores(vec1,vec2):
+    resu = []
+    solucion = [0,0]
+    if len(vec1)==len(vec2):
+        for i in range(len(vec1)):
+            resu.append(restar(vec1[i],vec2[i]))
+        for j in range(len(resu)):
+            solucion = sumar(solucion,potenciaCuadrada(resu[j]))
+    solucion[0]=solucion[0]**0.5
+    vectorFinal = solucion
+    return (solucion)
+
+def normaDeVector(vec1):
+    solucion = [0,0]
+    for i in range(len(vec1)):
+        solucion = sumar(solucion,potenciaCuadrada(vec1[i]))
+    solucion[0]=solucion[0]**0.5
+    return(solucion)
+
+
 def multiMatriz(mat1,mat2):
     finMat = []
     for i in range(len(mat1)):
@@ -164,11 +231,9 @@ def multiMatriz(mat1,mat2):
             for k in range(len(mat2)):
                 sumas = multiplicar(mat1[i][k],mat2[k][j])
                 cont = sumar(sumas,cont) 
-    
             aux.append(cont)
         finMat.append(aux)
     return (finMat)
-
     
 
 def prettyPrinting(c):
@@ -203,18 +268,23 @@ def prettyprintingMatriz(matrizFinal):
         
 
 def main():
-    m1 = productoTensorMatriz(matriz1,matriz1)
-    m2 = productoTensorMatriz(matriz1,matriz2)
-    multiplicacionMatriz1 = multiMatriz(m2,m1)
-    multiplicacionMatriz2 = multiMatriz(multiplicacionMatriz1,ident)
-    print(multiplicacionMatriz2)
+##    productoInternoVectores(vector1,vector2)
+##    normaDeVector(vector1)
+##    distanciaVectores(vector1,vector2)
+##     print(escalarPorMatriz(2,[[[1,0],[2,0]] , [[4,0],[5,0]]]))
+##    adicionMat(matriz1,matriz2)
+##    m1 = productoTensorMatriz(matriz1,matriz1)
+##    m2 = productoTensorMatriz(matriz1,matriz2)
+##    multiplicacionMatriz1 = multiMatriz(m2,m1)
+##    multiplicacionMatriz2 = multiMatriz(multiplicacionMatriz1,ident)
+##    print(multiplicacionMatriz2)
 ##    print(multiplicacionMatriz2)
 ##    multiMatriz(matriz1,matriz2)
 ##    productoTensorMatriz(matriz1,matriz2)
 ##    productoTensorVectores(vector1,vector2)
-##    escalarPorVector(2,vector1)
-##    matrizConjugada(matriz1)
-##    matrizTranspuesta(matriz1)
+##    print(escalarPorVector(3,[[2,1], [1,-3]]))
+##    matrizConjugada([[[1,-1],[2,7],[3,4]] , [[4,0],[5,10],[7,-4]]])
+    print(matrizTranspuesta([[[7, -9], [3, -4]], [[-1, 9], [5, -2]]]))
 ##    inversaVectores(vector1)
 ##    sumaVectores(vector1,vector2)
 ##    cartesianasPolares(num1)
@@ -222,8 +292,8 @@ def main():
 ##    sumar(num1,num2)
 ##    restar(num1,num2)
 ##    divicion(num1,num2)
-##    modulo(num1)
-##    conjugado(num1)
+##    modulo([3,2])
+##    conjugado([3,2])
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
 ##    prettyprintingMatriz(matrizFinal)
