@@ -6,8 +6,8 @@ num1 = [3,2]
 num2 = [-1,2]
 
 
-vector1 =[[2,1], [1,-3]]
-vector2 =[[5,0],[2,0]]
+vector1 =[[1,1], [1,1]]
+vector2 =[[0,0],[0,0]]
 vectorFinal = []
 vectorMultiComplejoVector = []
 vectorFinalTensor = []
@@ -27,7 +27,6 @@ def sumar(num1,num2):
     c[0],c[1] = resuE,resuI
     aux.append(resuE)
     aux.append(resuI)
-    print(aux)
     return (aux)
 
 def restar(num1,num2):
@@ -68,14 +67,14 @@ def divicion(num1,num2):
 def modulo(num1):
     resu = ((num1[0]**2)+(num1[1]**2))**0.5
     c[0],c[1]=resu,"null"
-    print(c)
+##    print(c)
     return resu
 def inversa(num1):
     c[0],c[1]= num1[0]*-1,num1[1]*-1
     return  c[0],c[1]
 def conjugado(num1):
     c[0],c[1]=num1[0],(num1[1]*-1)
-    print(c)
+##    print(c)
     return (c[0],c[1])
 
 def cartesianasPolares(num1):
@@ -89,28 +88,43 @@ def cartesianasPolares(num1):
     elif 0>num1[0]:
         angulo = 180- angulo
     c[0],c[1]= hipo ,angulo
-    print(c)
+##    print(c)
     return (hipo,angulo)
 
 
 def sumaVectores(vec1,vec2):
+    print ("---------------")
     resu = []
-    sumar = [0,0]
+    sumarRes = [0,0]
     if len(vec1)== len(vec2):
-        for i in range(len(vec1)):
-            print(sumar(vec1[i],vec2[i]))
+##        print(vec1[0])
+##        for i in range(len(vec1)):
+##            print(i)
+##            print(type(vec1[i]),vec1[i])
+##            print(type(vec2[i]),vec2[i])
+##            sumNumeros=sumar(vec1[i],vec2[i])
+####            resu.append(sumar(vec1[i],vec2[i]))
+##            print(sumNumeros)
+##            resu.append(sumNumeros)
+##        print("Segunda entrada")
+##        for j in range(len(resu)):
+##            sumarRes = sumar(sumarRes,resu[j])
+##    print(sumarRes)
+##    return sumarRes
+##        print("Entre")
+        for i in range(2):
             resu.append(sumar(vec1[i],vec2[i]))
-            print(aux)
-        for j in range(len(aux)):
-            suma = sumar(suma,aux[j])
-    return vectorFinal
+        for j in range(len(resu)):
+            sumarRes = sumar(sumarRes,resu[j])
+    print(sumarRes)
+    return sumarRes
 
 
 
 def inversaVectores(vec1):
     for i in range(len(vec1)):
         vectorFinal.append(inversa(vec1[i]))
-    print(vectorFinal)
+##    print(vectorFinal)
     return vectorFinal
 
 matriz1 = [[[1,-1],[2,7]] , [[4,0],[5,1]]]
@@ -121,7 +135,7 @@ def adicionMat(mat1,mat2):
         aux = []
         for j in range(len(mat1[0])):
             aux.append(sumar(mat1[i][j],mat2[i][j]))
-    print(aux)
+##    print(aux)
     return(aux)
 
 def matrizTranspuesta(mat1):
@@ -267,26 +281,26 @@ def prettyprintingMatriz(matrizFinal):
 
         
 
-def main():
-##    productoInternoVectores(vector1,vector2)
+##def main():
+##    print(productoInternoVectores([[2,1], [1,-3]],[[5,0],[2,0]]))
 ##    normaDeVector(vector1)
 ##    distanciaVectores(vector1,vector2)
 ##     print(escalarPorMatriz(2,[[[1,0],[2,0]] , [[4,0],[5,0]]]))
 ##    adicionMat(matriz1,matriz2)
 ##    m1 = productoTensorMatriz(matriz1,matriz1)
 ##    m2 = productoTensorMatriz(matriz1,matriz2)
-##    multiplicacionMatriz1 = multiMatriz(m2,m1)
+##    print(multiMatriz([[[1,-1],[2,7]] , [[4,0],[5,1]]],[[[2, 0],[5,0]] , [[3,0],[7,0]]]))
 ##    multiplicacionMatriz2 = multiMatriz(multiplicacionMatriz1,ident)
 ##    print(multiplicacionMatriz2)
 ##    print(multiplicacionMatriz2)
 ##    multiMatriz(matriz1,matriz2)
-##    productoTensorMatriz(matriz1,matriz2)
+##    productoTensorMatriz([[[1,-1],[2,7]] , [[4,0],[5,1]]],[[[2, 0],[5,0]] , [[3,0],[7,0]]])
 ##    productoTensorVectores(vector1,vector2)
 ##    print(escalarPorVector(3,[[2,1], [1,-3]]))
 ##    matrizConjugada([[[1,-1],[2,7],[3,4]] , [[4,0],[5,10],[7,-4]]])
-    print(matrizTranspuesta([[[7, -9], [3, -4]], [[-1, 9], [5, -2]]]))
+##    print(matrizTranspuesta([[[7, -9], [3, -4]], [[-1, 9], [5, -2]]]))
 ##    inversaVectores(vector1)
-##    sumaVectores(vector1,vector2)
+##print(sumaVectores([[5,0],[2,0]],[[2,0],[8,0]]))
 ##    cartesianasPolares(num1)
 ##    multiplicar(num1,num2)
 ##    sumar(num1,num2)
@@ -297,4 +311,4 @@ def main():
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
 ##    prettyprintingMatriz(matrizFinal)
-main()
+##main()
