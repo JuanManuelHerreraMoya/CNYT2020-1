@@ -28,4 +28,4 @@ Esta es una libreria de numeros complejos , usando vectores , y matricez.
   
 ## Autor :
   - _Juan Manuel Herrera Moya_
-  
+ "Como usar las pruebas"
