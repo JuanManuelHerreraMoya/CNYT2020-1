@@ -27,7 +27,6 @@ def sumar(num1,num2):
     c[0],c[1] = resuE,resuI
     aux.append(resuE)
     aux.append(resuI)
-    print(aux)
     return (aux)
 
 def restar(num1,num2):
@@ -267,7 +266,7 @@ def prettyprintingMatriz(matrizFinal):
 
         
 
-def main():
+##def main():
 ##    productoInternoVectores(vector1,vector2)
 ##    normaDeVector(vector1)
 ##    distanciaVectores(vector1,vector2)
@@ -284,7 +283,7 @@ def main():
 ##    productoTensorVectores(vector1,vector2)
 ##    print(escalarPorVector(3,[[2,1], [1,-3]]))
 ##    matrizConjugada([[[1,-1],[2,7],[3,4]] , [[4,0],[5,10],[7,-4]]])
-    print(matrizTranspuesta([[[7, -9], [3, -4]], [[-1, 9], [5, -2]]]))
+##    print(matrizTranspuesta([[[7, -9], [3, -4]], [[-1, 9], [5, -2]]]))
 ##    inversaVectores(vector1)
 ##    sumaVectores(vector1,vector2)
 ##    cartesianasPolares(num1)
@@ -297,4 +296,4 @@ def main():
 ##    prettyPrinting(c)
 ##    prettyprintingVectores(vectorFinal)
 ##    prettyprintingMatriz(matrizFinal)
-main()
+##main()
